@@ -15,7 +15,9 @@ var express 	= require("express"),
  	indexRoutes		 = require("./routes/index")
 
 //seedDB();
-mongoose.connect("mongodb://localhost:27017/yelp_camp", {useNewUrlParser: true, useUnifiedTopology: true});
+//mongoose.connect("mongodb://localhost:27017/yelp_camp", {useNewUrlParser: true, useUnifiedTopology: true});
+
+mongoose.connect("mongodb+srv://Messi:Ronaldo@cluster0.z1xm6.mongodb.net/yelpcamp?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
@@ -48,6 +50,4 @@ app.use("/campgrounds/:id/comments", commentsRoutes);
 app.use(indexRoutes); 
 
 
-app.listen(8080, () => {
-	console.log("Server started on PORT 8080");
-});
+app.listen(process.env.PORT,process.env.IP);
